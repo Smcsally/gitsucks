@@ -3,7 +3,6 @@ import java.util.Scanner;
 /**
  * The Exit class contains all information about an exit within Bork.
  * 
- * This is a line to test the updates
  * @author Shane McSally
  * @version Version 3 10/23/2016
  */
