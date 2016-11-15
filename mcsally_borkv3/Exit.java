@@ -15,7 +15,7 @@ public class Exit {
 
     /**
      * Constructs an exit for a room
-     * 
+     * MIKE ADDED THIS COMMENT
      * @param  dir  direction the exit is in from center of room
      * @param  src  room you are leaving
      * @param  dest  room you are going to
