@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=verb\ noun
+comment0.target=ItemSpecificCommand(java.lang.String,\ java.lang.String)
+comment0.text=\n\ Constructor\ for\ objects\ of\ Class\ ItemSpecificCommand\n\ \n\ @param\ verb\ \ \ \ \ \ Item's\ action\ verb\ as\ a\ String\n\ @param\ noun\ \ \ \ \ \ Item's\ pairing\ message\ sent\ from\ CommandFactory\ as\ complete\ input\n
+comment1.params=
+comment1.target=java.lang.String\ execute()
+comment1.text=\n\ Searches\ user's\ inventory\ and\ room\ for\ item.\ If\ found\ it\ attempts\ to\ pair\ it\ with\ the\ corresponding\ verb.\n\ \n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ message\ to\ user.\ \n\ @throws\ InterruptedException\ \ \ \ \ Pushes\ IO\ exception\ up\ the\ stack\n
+numComments=2
