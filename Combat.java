@@ -3,7 +3,7 @@ import java.io.*;
  * UnlockCommand is an abstract extension of Command Class
  * It allows the user to interact with locked doors
  * 
- * @author Joshua Wright
+ * @author Shane McSally
  * @version Zork v1
  */
 public class Combat 
