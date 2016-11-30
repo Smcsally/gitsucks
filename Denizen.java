@@ -144,6 +144,16 @@ public class Denizen
     }
     
     /**
+     * Setter method for NPC mobility
+     * 
+     * @param mobile     Boolean value to set NPC's mobility to
+     */
+    public void setMobile(boolean mobile)
+    {
+        this.isMobile = mobile; 
+    }
+    
+    /**
      * Getter method for NPC mood
      * 
      * @return      NPC object's mood as boolean. 
@@ -154,13 +164,23 @@ public class Denizen
     }
     
     /**
+     * Setter method for NPC mood
+     * 
+     * @param mood      Boolean value to set NPC's mood to
+     */
+    public void setMood(boolean mood)
+    {
+        this.isAngered = mood; 
+    }
+    
+    /**
      * Setter method for NPC hit points
      * 
      * @param h  Hitpoints of NPC object as integer.
      */
-    private void setHealth(int h)
+    public void setHealth(int h)
     {
-        health = h; 
+        health = health - h; 
     }
     
     /**
@@ -182,6 +202,16 @@ public class Denizen
     void add(Item item)
     {
         this.carriedItems.add(item); 
+    }
+    
+    /**
+     * Removes item from NPC inventory.
+     * 
+     * @param item      Item to remove from NPC inventory ArrayList as Item object.
+     */
+    void removeFromInventory(Item item)
+    {
+        carriedItems.remove(item); 
     }
     
     /**
@@ -212,7 +242,8 @@ public class Denizen
                     if(!tryFollowUser(npcRoom, npc))
                     {
                         int i = randInt(0, npcRoom.exitPath.size() -1); 
-                        npc.goToAdjacentRoom(npcRoom, i, npc); 
+                        npc.goToAdjacentRoom(npcRoom, i, npc);
+                        leaveItemInRoom(npc); 
                     } 
                 }
                 else if(npc.isMobile)
@@ -220,6 +251,8 @@ public class Denizen
                     Room npcRoom = npc.getNpcRoom(); 
                     int i = randInt(0, npcRoom.exitPath.size() - 1); 
                     npc.goToAdjacentRoom(npcRoom, i, npc); 
+                    takeItemFromRoom(npc);
+                    leaveItemInRoom(npc); 
                 }
             }
         }
@@ -288,6 +321,64 @@ public class Denizen
         room.removeNpc(npc); 
         tempRoom.addNpc(npc); 
         //System.out.println("goToAdjacentRoom move '" +npc.getName()+ "' to '" +tempRoom.getTitle()+ "'."); 
+    }
+    
+    /**
+     * NPC takes item from room
+     * 
+     * @param npc       NPC object to work with. 
+     */
+    static void takeItemFromRoom(Denizen npc)
+    {
+        Room room = npc.getNpcRoom(); 
+        if(!room.roomItems.isEmpty())
+        {
+            ArrayList<Item> al = room.getRoomItems();
+            ArrayList<Item> toDrop = new ArrayList<Item>();
+            Iterator<Item> iter = al.iterator(); 
+            while(iter.hasNext())
+            {
+                Item item = iter.next(); 
+                int i = randInt(0, 9);
+                if(item.getWeight() != 99999)
+                {
+                    switch(i)
+                    {
+                        //case 0: case 1: case 2: case 3: case 4: // testing
+                        case 5: case 6: case 7: case 8: case 9:         toDrop.add(item);  
+                                                                        npc.add(item);
+                                                                        //System.out.println("'" + npc.getName() + "' grabbed '" + item.getPrimaryName() + "' from '" + room.getTitle() + "'."); //testing 
+                                                                        break; 
+                    
+                    }
+                }
+            }
+            
+            for(Item item : toDrop)
+            {
+                room.remove(item); 
+            }
+        }
+    }
+    
+    /**
+     * NPC leaves item in room
+     * 
+     * @param npc       NPC object to work with
+     */
+    static void leaveItemInRoom(Denizen npc)
+    {
+        Room room = npc.getNpcRoom(); 
+        ArrayList<Item> al = npc.carriedItems; 
+        if(al.size() > 3)
+        {
+            int i = randInt(0, al.size() -1); 
+            Item item = al.get(i); 
+            npc.removeFromInventory(item); 
+            room.add(item); 
+            //System.out.println("'" + npc.getName() + "' left '" + item.getPrimaryName() + "' in '" + room.getTitle() + "'."); //testing
+        }
+        
     }
     
     /**

@@ -8,7 +8,7 @@ their item weight are tagged as items that canot be taken.
 
 You can test this out from the intial room, "Engine Control". There is a "holoplinth" in the room. Think
 of it as a futuristic computer terminal, with a holographic GUI. Try to "take holoplinth"; you will see that
-it cannot be taken. Instead, you are provided with a message that informs you that you can interact with it
+it stuck to the floor. Instead, you are provided with a message that informs you that you can interact with it
 instead. 
 
 ---
@@ -68,7 +68,67 @@ the NPC will follow the user through the dungeon. If they are not angry, they wi
 This is difficult to test, as the NPCs do move on their own. However, a "Squig" starts in the "Equipment Locker"
 room, and a "Ork Nob" starts out in the "Decon Secundus" room. Both are angry and will follow you if you come 
 close enough. You can verify their movement by unlocking the holoplinth, accessing it, and bioscanning. After your 
-first scan, move out of the room and back into it. Then bioscan again. The NPCs will have changed locations. 
+first scan, move out of the room and back into it. Then bioscan again. The NPCs will have changed locations.
 
-NPCs can also carry items. //need to finish writing the "steal" command. 
+As the NPCs move through the Dungeon, they'll randomly pick up items and add them to their inventory. You're not
+the only one looking for things to take. Each time an Ork enters a room, they'll attempt to pick up each item in 
+it provided they are not chasing the user through the dungeon. While Orks are greedy, they'd much rather bludgeon
+you than steal things from rooms. They have a 50% chance to pick up each item in the room. To ensure the Orks don't
+soak up all the items in the dungeon, they will drop a random item from their inventory, when they have too much in it. 
+(>3). After all, Orks will drop something to pick up something that's shinier. 
 
+These items can be stolen from the NPC by use of the "steal" command. However, stealing items from an angry Ork is no easy task. 
+If there is an Ork in the room you're located in, you can try to steal from it. Type "Steal from (the name of the Ork)". 
+The interpreter will attempt to verify there is an Ork in the room and determine if you're calling out a correct Ork to steal from. 
+If you don't specify an Ork, the game will prompt you to specifyone. If the room is empty, the game will inform you as such - and 
+you'll lose points for being an idiot. 
+
+After you try to steal, and the game verifies there is someone to steal from, it's all a roll of the dice. You're
+trying to steal from Orks, which are inherently greedy. Orks will try to hold onto what they have, making them less able to 
+hit you. However, if they're not carrying anything, they'll gladly beat you to death. Failures can result in horrible outcomes 
+as indicated below:
+
+++++Ork is NOT carrying items, but isn't angry:
+
+0:  You make it mad, lose half your health, and aren't informed if the Ork had anything in the first place.
+1:	You make it mad, lose a third of your health, and aren't informed if the Ork had anything in the first place.
+2:  You make it mad, lose one-quarter health, and aren't informed if the Ork had anything in the first place.
+3-5:	You make it mad, and aren't informed if the Ork had anything in the first place.
+
+All take away 10 points. 
+
+6-7:	You make it mad, and are informed it wasn't carrying anything. 
+8-9:	You're informed it wasn't carrying anything. 
+
+++++Ork is NOT carrying items, but is angry: 
+
+0: You receive a world altering blow, reducing your health to 1. Not informed if carrying items or not. 
+1-3:	You receive a mind numbing blow, losing half your health. Not informed if carrying items or not. 
+4-6:	You receive a solid blow, losing one-third health. Not informed if carrying items or not.
+7-8:	You receive a glancing blow, losing one-quarter health. Informed the Ork had nothing to steal. 
+
+All take away 20 points.  
+
+9:	You're informed the ork wasn't carrying anything.
+
+++++Ork IS carrying items, but isn't angry:
+
+0:	You receive a hard blow that reduces your health by a quarter. Lose 10 points. Makes Ork mad. 
+1:	You receive a glancing blow that reduces your health by a fifth. Lose 10 points. Makes Ork mad. 
+2-4:	Makes ork mad. Lose 10 points. 
+5-7:	Successful steal. Get 20 points and an item. 
+8:	Successful steal. Break the orks legs (no longer mobile). Get 30 points and an item. 
+9:	Successful steal. You're so crafty you slit the Ork's throat in the process. Kill the Ork, get all items, and 50 points.
+	You gain 50% health. 
+
+++++Ork IS carrying items, and IS angry:
+
+0:	You receive a world altering blow that reduces your health to 1. Lose 30 points. 
+1-3:	You receive a glancing hit, reducing your health by a fifth. Lose 30 points. 
+4-6:	You steal an item from the Ork, but pay for it in the process. Lose one-quarter health. Gain 20 points. 
+7-8:	You steal an item from the Ork. Gain 40 points as well. 
+9:  You steal all items from the Ork. Kill the Ork. Get 60 points. And walk out a veritable bad ass.
+
+Thought for the day: Don't try to pick pocket Orks, unless your willing to pay the price. 
+
+--- 

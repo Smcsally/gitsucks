@@ -5,7 +5,7 @@ import java.io.*;
  * GameState Holds the current state of the game. 
  * 
  * @author      William (Greg) Phillips
- * @version     Zork v1
+ * @version     Zork v1.2
  */
 
 class GameState
@@ -294,7 +294,7 @@ class GameState
      * Searches user inventory for item of specified name.
      * 
      * @param name      Primary name of item to search for
-     * @return          Item object if found in room. Null if Item cannot be found.
+     * @return          Item object if found in inventory. Null if Item cannot be found.
      */
     Item getItemFromInventory(String name)
     {
