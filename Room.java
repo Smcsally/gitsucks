@@ -107,9 +107,14 @@ public class Room
         {
             if(exit.getDir().equals(dir))
             {
-                If (exit.isLocked())
+                if (exit.isLocked())
                 {
-                    System.out.println("Room '" +exit.getDest().getTitle()+ "' is locked.  You need a '" + + "'.");
+                    String items = "";
+                    for(Item item : exit.getKeys())
+                    {
+                        items = item.getPrimaryName(); 
+                    }
+                    System.out.println("Room '" +exit.getDest().getTitle()+ "' is locked.  You need a '" + items + "' to unlock this exit.");
                 }                
                 else
                 {
