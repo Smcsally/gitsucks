@@ -107,13 +107,20 @@ public class Room
         {
             if(exit.getDir().equals(dir))
             {
-                System.out.println("Moving to Room '" +exit.getDest().getTitle()+ "'.");
-                System.out.print("."); 
-                Thread.sleep(150); 
-                System.out.print("."); 
-                Thread.sleep(150); 
-                System.out.print(".\n"); 
-                Thread.sleep(150); 
+                If (exit.isLocked())
+                {
+                    System.out.println("Room '" +exit.getDest().getTitle()+ "' is locked.  You need a '" + + "'.");
+                }                
+                else
+                {
+                    System.out.println("Moving to Room '" +exit.getDest().getTitle()+ "'.");
+                    System.out.print("."); 
+                    Thread.sleep(150); 
+                    System.out.print("."); 
+                    Thread.sleep(150); 
+                    System.out.print(".\n"); 
+                    Thread.sleep(150); 
+                }
                 return exit.getDest(); 
             }
         }

@@ -12,7 +12,8 @@ public class Exit
     private Room src; 
     private Room dest; 
     private boolean locked;
-    private String key;
+    /*Customizations: Keys you must be in posetion of to get the locked cleared*/
+    ArrayList<Item> keys = new ArrayList<Item>(); 
     private String door;
     /**
      * Constructor for objects of class Exit
@@ -42,7 +43,26 @@ public class Exit
         {
             Room tempRoom = d.getRoom(s.nextLine()); 
             String direction = s.nextLine(); 
-            Room tempDest = d.getRoom(s.nextLine());
+            
+            String[] parts = s.nextLine().split(":"); 
+            Room tempDest = d.getRoom(parts[0]);
+            
+            /* Customizations: check if the exit is locked, if it is grab what item(s) can unlock it */
+            if (parts.length > 1) 
+            {
+                if (parts[1].equals("locked"))
+                {                    
+                    this.locked = true;
+                    /* Now split the last part as items that are keys */
+                    String[] pieces = s.nextLine().split(",");
+                    GameState gs = GameState.instance(); 
+                    for(String itemName : pieces)
+                    {
+                        Item item = gs.getDungeon().getItem(itemName); 
+                        this.keys.add(item);
+                    }
+                }
+            }
             
             Exit tempExit = new Exit(direction, tempRoom, tempDest); 
             tempRoom.addExit(tempExit); 
@@ -59,6 +79,26 @@ public class Exit
     {
         String s = "You can go '" + getDir() + "' to '" + getDest().getTitle()+ "' from '" +getSrc().getTitle()+ "'."; 
         return s; 
+    }
+    
+    /**
+     * Get the Direction of this exit object.
+     * 
+     * @return     returns direction to exit as a String
+     */
+    public Boolean isLocked()
+    {
+        return this.locked; 
+    }
+    
+    /**
+     * Get the Direction of this exit object.
+     * 
+     * @return     returns direction to exit as a String
+     */
+    public ArrayList<Item> getKeys()
+    {
+        return this.keys; 
     }
     
     /**
