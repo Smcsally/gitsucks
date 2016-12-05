@@ -13,10 +13,16 @@ public class Room
     private String title = ""; 
     private String desc = ""; 
     private boolean beenHere = false; 
-    ArrayList<Exit> exitPath = new ArrayList<Exit>(); 
+    ArrayList<Exit> roomExits = new ArrayList<Exit>(); 
     ArrayList<Item> roomItems = new ArrayList<Item>(); 
     ArrayList<Denizen> npcHere = new ArrayList<Denizen>(); 
     
+    public static class ExitIsLockedException extends Exception {
+        public ExitIsLockedException(String e) {
+            super(e);
+        }
+    }
+
     /**
      * Constructor for objects of class Room
      * 
@@ -100,21 +106,21 @@ public class Room
      * @return                          Destination to exit to as a Room object. Null if there isn't an exit in the specified direction
      * @throws InterruptedException     Pushes IO exception up the stack
      */ 
-    Room leaveBy(String dir) throws InterruptedException
+    Room leaveBy(String dir) throws InterruptedException, ExitIsLockedException
     {
         GameState gs = GameState.instance(); 
-        for(Exit exit : gs.getAdventurersCurrentRoom().exitPath)
+        for(Exit exit : gs.getAdventurersCurrentRoom().roomExits)
         {
             if(exit.getDir().equals(dir))
             {
                 if (exit.isLocked())
-                {
+                {                    
                     String items = "";
                     for(Item item : exit.getKeys())
                     {
                         items = item.getPrimaryName(); 
                     }
-                    System.out.println("Room '" +exit.getDest().getTitle()+ "' is locked.  You need a '" + items + "' to unlock this exit.");
+                    throw new ExitIsLockedException("This exit is locked, you need to use a '" + items + "' to unlock it.");                    
                 }                
                 else
                 {
@@ -131,6 +137,7 @@ public class Room
         }
         return null; 
     }
+
     
     /**
      * Describes the room.
@@ -148,7 +155,7 @@ public class Room
         String r = "";
         String d = ""; 
         GameState gs = GameState.instance(); 
-        for(Exit exit : gs.getAdventurersCurrentRoom().exitPath)
+        for(Exit exit : gs.getAdventurersCurrentRoom().roomExits)
         {
            s = s + exit.describe() + "\n"; 
         }
@@ -170,7 +177,7 @@ public class Room
      */ 
     public void addExit(Exit exit)
     {
-        this.exitPath.add(exit); 
+        this.roomExits.add(exit); 
     }
     
     /**

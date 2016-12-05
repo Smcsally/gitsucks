@@ -12,6 +12,7 @@ public class Exit
     private Room src; 
     private Room dest; 
     private boolean locked;
+    private String lockedObject;
     /*Customizations: Keys you must be in posetion of to get the locked cleared*/
     ArrayList<Item> keys = new ArrayList<Item>(); 
     private String door;
@@ -47,24 +48,26 @@ public class Exit
             String[] parts = s.nextLine().split(":"); 
             Room tempDest = d.getRoom(parts[0]);
             
+            Exit tempExit = new Exit(direction, tempRoom, tempDest); 
             /* Customizations: check if the exit is locked, if it is grab what item(s) can unlock it */
             if (parts.length > 1) 
             {
                 if (parts[1].equals("locked"))
                 {                    
-                    this.locked = true;
+                    tempExit.locked = true;
+                    tempExit.lockedObject = parts[2];
+                    
                     /* Now split the last part as items that are keys */
-                    String[] pieces = parts[2].split(",");
+                    String[] pieces = parts[3].split(",");
                     GameState gs = GameState.instance(); 
                     for(String itemName : pieces)
                     {
                         Item item = d.getItem(itemName); 
-                        this.keys.add(item);
+                        tempExit.keys.add(item);
                     }
                 }
             }
             
-            Exit tempExit = new Exit(direction, tempRoom, tempDest); 
             tempRoom.addExit(tempExit); 
         }
         s.nextLine(); 
@@ -89,6 +92,16 @@ public class Exit
     public Boolean isLocked()
     {
         return this.locked; 
+    }
+    
+    /**
+     * Get the Direction of this exit object.
+     * 
+     * @return     returns direction to exit as a String
+     */
+    public String getLockedObject()
+    {
+        return this.lockedObject; 
     }
     
     /**
@@ -137,6 +150,6 @@ public class Exit
      */
     public void unlock()
     {
-        //will code during next stage of project
+        locked = false;
     }
 }

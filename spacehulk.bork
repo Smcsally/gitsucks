@@ -211,11 +211,11 @@ Intersection Gamma Eng
 ---
 Intersection Gamma Eng
 s
-Corridor Delta Eng (S):locked:greencaccard
+Corridor Delta Eng (S):locked:door:greencaccard
 ---
 Corridor Delta Eng (S)
 n
-Intersection Gamma Eng:locked:greencaccard
+Intersection Gamma Eng:locked:door:greencaccard
 ---
 Corridor Alpha Eng
 w
@@ -243,11 +243,11 @@ Intersection Epsilon Eng
 ---
 Corridor Theta Eng (S)
 n
-Intersection Epsilon Eng:locked:greencaccard
+Intersection Epsilon Eng:locked:door:greencaccard
 ---
 Intersection Epsilon Eng
 s
-Corridor Theta Eng (S):locked:greencaccard
+Corridor Theta Eng (S):locked:door:greencaccard
 ---
 Corridor Theta Eng (S)
 s
@@ -315,11 +315,11 @@ Reactor Room NE Corner
 ---
 Nozzle Array
 s
-Reactor Floor:locked:greencaccard,redcaccard
+Reactor Floor:locked:door:redcaccard
 ---
 Reactor Floor
 n
-Nozzle Array:locked:greencaccard,redcaccard
+Nozzle Array:locked:door:redcaccard
 ---
 Reactor Floor
 s
