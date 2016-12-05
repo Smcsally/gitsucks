@@ -54,11 +54,11 @@ public class Exit
                 {                    
                     this.locked = true;
                     /* Now split the last part as items that are keys */
-                    String[] pieces = s.nextLine().split(",");
+                    String[] pieces = parts[2].split(",");
                     GameState gs = GameState.instance(); 
                     for(String itemName : pieces)
                     {
-                        Item item = gs.getDungeon().getItem(itemName); 
+                        Item item = d.getItem(itemName); 
                         this.keys.add(item);
                     }
                 }

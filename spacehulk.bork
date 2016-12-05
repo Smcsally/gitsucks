@@ -63,11 +63,12 @@ orkglyph3 0
 break[Wound(10),Disappear]:++++Booby Trapped++++
 read:++++The text ".....tha" is all that remains++++
 ---
-Green CAC Card 0
-unlock[Unlock]:++++Enter Authorization Code++++---
+greencaccard 0
+unlock:++++Enter Authorization Code++++---
 ---
-Red CAC Card 0
-unlock[Unlock]:++++Enter Authorization Code++++---
+redcaccard 0
+unlock:++++Enter Authorization Code++++---
+---
 ===
 Rooms:
 Engine Control
