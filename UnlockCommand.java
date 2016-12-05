@@ -37,7 +37,7 @@ public class UnlockCommand extends Command
      */
     String execute() throws InterruptedException, FileNotFoundException
     {
-        String response = "Unlock has not been implmeneted yet, your stuck!";
+        String response = "Exit is now unlocked...proceed.";
         String [] parts = this.command.split(" "); 
 
         // parts[0] is the word "unlock"...that is how we got here!
@@ -80,9 +80,9 @@ public class UnlockCommand extends Command
                 }
             }
             else
-        {
-            response = "I don't know what '" + lockedObject + "' means.";
-        }
+            {
+                response = "I don't know what '" + lockedObject + "' means.";
+            }
             
         }
         

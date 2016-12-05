@@ -11,7 +11,7 @@ swing:++++vrrrrr! vrrrrr!+++
 ---
 dataslate 1
 read:++++Contents Locked - Enter Authorization Code++++
-unlock[Unlock]:++++Enter Authorization Code++++
+access[access]:++++Enter Authorization Code++++
 ---
 powerpack 10
 activate:++++The powerpack softly hums++++
@@ -38,7 +38,7 @@ servoskull3 0
 activate[Score(5),Disappear]:++++The eyes flash four times++++
 ---
 holoplinth 99999
-activate[Unlock]:++++The holoplinth's machine spirit awakens++++
+activate[access]:++++The holoplinth's machine spirit awakens++++
 ---
 purityseal1 0
 wear[Score(5),Wound(-2),Disappear]:++++For The Emperor!++++

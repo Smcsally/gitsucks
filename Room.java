@@ -124,6 +124,12 @@ public class Room
                 }                
                 else
                 {
+                    //If we are accessing a room through a locked object, close the door behind us!!! 
+                    if (exit.getLockedObject().length() > 0 )
+                    {
+                        exit.lock();
+                    }
+                    
                     System.out.println("Moving to Room '" +exit.getDest().getTitle()+ "'.");
                     System.out.print("."); 
                     Thread.sleep(150); 
@@ -413,13 +419,4 @@ public class Room
         this.npcHere.remove(npc); 
     }
     
-    /**
-     * Unlocks the door based on the key given
-     * 
-     * @param key   String name of the item that unlocks the exit
-     */
-    public void unlockExit(String key)
-    {
-        //will write during next step of project
-    }
 }

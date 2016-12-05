@@ -11,8 +11,8 @@ public class Exit
     private String dir = ""; 
     private Room src; 
     private Room dest; 
-    private boolean locked;
-    private String lockedObject;
+    private boolean locked = false;
+    private String lockedObject = "";
     /*Customizations: Keys you must be in posetion of to get the locked cleared*/
     ArrayList<Item> keys = new ArrayList<Item>(); 
     private String door;
@@ -54,7 +54,7 @@ public class Exit
             {
                 if (parts[1].equals("locked"))
                 {                    
-                    tempExit.locked = true;
+                    tempExit.lock();
                     tempExit.lockedObject = parts[2];
                     
                     /* Now split the last part as items that are keys */
@@ -100,7 +100,7 @@ public class Exit
      * @return     returns direction to exit as a String
      */
     public String getLockedObject()
-    {
+    {        
         return this.lockedObject; 
     }
     
@@ -145,11 +145,19 @@ public class Exit
     }
     
     /**
-     * Changes boolean field "locked" value to true
+     * Changes boolean field "locked" value to false
      * 
      */
     public void unlock()
     {
         locked = false;
+    }
+    /**
+     * Changes boolean field "locked" value to true
+     * 
+     */
+    public void lock()
+    {
+        locked = true;
     }
 }

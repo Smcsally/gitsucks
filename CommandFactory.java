@@ -104,15 +104,15 @@ class CommandFactory
                 StealCommand steal = new StealCommand(commandString); 
                 return steal; 
             }
-            else if(AVAIL_VERBS.contains(string))
-            {
-                ItemSpecificCommand spec = new ItemSpecificCommand(string, commandString); 
-                return spec; 
-            }
             else if(UNLOCK_COMMANDS.contains(string))
             {
                 UnlockCommand unlock = new UnlockCommand(commandString);
                 return unlock;
+            }
+            else if(AVAIL_VERBS.contains(string))
+            {
+                ItemSpecificCommand spec = new ItemSpecificCommand(string, commandString); 
+                return spec; 
             }
         }
         UnknownCommand unk = new UnknownCommand(commandString); 
