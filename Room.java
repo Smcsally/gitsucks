@@ -107,13 +107,25 @@ public class Room
         {
             if(exit.getDir().equals(dir))
             {
-                System.out.println("Moving to Room '" +exit.getDest().getTitle()+ "'.");
-                System.out.print("."); 
-                Thread.sleep(150); 
-                System.out.print("."); 
-                Thread.sleep(150); 
-                System.out.print(".\n"); 
-                Thread.sleep(150); 
+                if (exit.isLocked())
+                {
+                    String items = "";
+                    for(Item item : exit.getKeys())
+                    {
+                        items = item.getPrimaryName(); 
+                    }
+                    System.out.println("Room '" +exit.getDest().getTitle()+ "' is locked.  You need a '" + items + "' to unlock this exit.");
+                }                
+                else
+                {
+                    System.out.println("Moving to Room '" +exit.getDest().getTitle()+ "'.");
+                    System.out.print("."); 
+                    Thread.sleep(150); 
+                    System.out.print("."); 
+                    Thread.sleep(150); 
+                    System.out.print(".\n"); 
+                    Thread.sleep(150); 
+                }
                 return exit.getDest(); 
             }
         }
