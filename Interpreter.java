@@ -81,10 +81,6 @@ public class Interpreter
         
         System.out.print("Enter Data Location: ");
         userFile = in.nextLine(); 
-        if (userFile.equals(""))
-        {
-            userFile = "spacehulk.bork";
-        }
         
         System.out.println(); 
         in.close(); 
