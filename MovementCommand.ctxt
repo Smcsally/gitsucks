@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.params=dir
-comment0.target=MovementCommand(java.lang.String)
-comment0.text=\n\ Constructor\ for\ objects\ of\ Class\ MovementCommand\n\ \n\ @param\ dir\ \ \ Direction\ as\ String\ to\ move\ user\n
-comment1.params=
-comment1.target=java.lang.String\ execute()
-comment1.text=\n\ Attempts\ to\ move\ user\ between\ Room\ objects\n\ \n\ @throws\ InterruptedException\ \ \ \ \ \ Pushes\ thread\ sleep\ disruptions\ up\ the\ stack\ \n\ @throws\ FileNotFoundException\ \ \ \ \ Pushes\ IO\ exception\ up\ the\ stack\ where\ not\ explicitly\ handled\n\ \n\ @return\ \ \ \ \ \ String\ based\ on\ movement\ success\ or\ fail\n
-numComments=2
