@@ -8,11 +8,12 @@ int main()
 	double temp;
 	cout << "Enter a number of elements: ";
 	cin >> elements;
-	for(int i = 0; i < elements; i++)
+	for (int i = 0; i < elements; i++)
 	{
 		cout << "Enter value: ";
 		cin >> temp;
 		sum += temp;
 	}
-	cout << "Average is " << sum/elements << endl;
+	cout << "Average is " << sum / elements << endl;
+}
 
